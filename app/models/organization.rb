@@ -2,6 +2,8 @@ class Organization < ActiveRecord::Base
   enum type: [:show_room, :service, :dealer]
   enum pricing_policy: [:flexible, :fixed, :prestige]
 
+  has_many :models
+
   validates :name, :public_name, presence: true
   validates :name, uniqueness: true
 

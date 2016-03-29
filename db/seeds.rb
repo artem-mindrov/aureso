@@ -13,3 +13,17 @@
 ].each do |org|
   Organization.create(org)
 end
+
+org = Organization.find_by_public_name("BMW")
+
+1.upto(7) do |i|
+  org.models.create(name: "Series #{i}")
+end
+
+org = Organization.find_by_public_name("Audi")
+
+%w{A Q}.each do |series|
+  org.models.create(name: series)
+end
+
+Organization.find_by_public_name("Volkswagen").models.create(name: "Golf")
