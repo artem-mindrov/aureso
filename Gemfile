@@ -11,6 +11,7 @@ gem 'tzinfo-data'
 group :test do
   gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails', "~> 4.0"
+  gem 'timecop'
 end
 
 group :development, :test do
@@ -18,7 +19,7 @@ group :development, :test do
 end
 
 gem 'friendly_id', '~> 5.1.0'
-
+gem 'nokogiri', ">= 1.6.7.rc"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
