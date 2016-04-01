@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'pricing_policy'
+require 'pricing_policy_spec'
 require 'timecop'
 
 RSpec.describe PricingPolicy do
