@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # https://github.com/rails/jbuilder/issues/32#issuecomment-32216199
-RSpec.describe Api::V1::ModelTypesController, type: :request do
+RSpec.describe V1::ModelTypesController, type: :request do
   before do
     @model = create(:model)
     create_list(:model_type, 10, model_id: @model.id)
@@ -10,7 +10,7 @@ RSpec.describe Api::V1::ModelTypesController, type: :request do
 
   describe "GET #index" do
     it "returns the list of models and their types" do
-      get "/api/models/#{@model.slug}/model_types"
+      get "/models/#{@model.slug}/model_types"
 
       parsed_json = JSON.parse(response.body)
       expect(parsed_json).to have_key("models")
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::ModelTypesController, type: :request do
     it "returns a specific model type as JSON" do
       model_type = @model.model_types.first
 
-      post "/api/models/#{@model.slug}/model_types_price/#{model_type.slug}"
+      post "/models/#{@model.slug}/model_types_price/#{model_type.slug}"
 
       parsed_json = JSON.parse(response.body)
       expect(parsed_json).to have_key("model_type")
@@ -46,7 +46,7 @@ RSpec.describe Api::V1::ModelTypesController, type: :request do
   end
 
   it "redirects to 404 for non-existent models" do
-    get "/api/models/non-existent-model"
+    get "/models/non-existent-model"
     expect(response.status).to eq(404)
     expect(JSON.parse(response.body)).to have_key("error")
   end
