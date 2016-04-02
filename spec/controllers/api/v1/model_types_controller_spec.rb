@@ -44,4 +44,10 @@ RSpec.describe Api::V1::ModelTypesController, type: :request do
       %w{created_at updated_at}.each { |attr| expect(parsed_json["model_type"]).to_not have_key(attr) }
     end
   end
+
+  it "redirects to 404 for non-existent models" do
+    get "/api/models/non-existent-model"
+    expect(response.status).to eq(404)
+    expect(JSON.parse(response.body)).to have_key("error")
+  end
 end
