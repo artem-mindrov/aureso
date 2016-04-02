@@ -1,0 +1,1 @@
+json.model_type { json.(@model_type, :name, :base_price, :total_price) }

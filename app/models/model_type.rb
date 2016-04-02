@@ -7,6 +7,7 @@ class ModelType < ActiveRecord::Base
   belongs_to :model
 
   validates :name, :base_price, presence: true
+  validates :name, uniqueness: { scope: :model }
   validates :base_price, numericality: { greater_than: 0 }
 
   def model_type_slug
