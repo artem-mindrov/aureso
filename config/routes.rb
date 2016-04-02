@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
       resources :models, only: [] do
         resources :model_types, only: :index
+        post "model_types_price/:model_type_id", to: "model_types#model_types_price"
       end
     end
   end
