@@ -20,6 +20,9 @@ end
 
 gem 'friendly_id', '~> 5.1.0'
 gem 'nokogiri', ">= 1.6.7.rc"
+gem 'bcrypt'
+gem 'has_secure_token'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

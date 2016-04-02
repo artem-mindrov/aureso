@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329184303) do
+ActiveRecord::Schema.define(version: 20160402181358) do
+
+  create_table "auth_tokens", force: true do |t|
+    t.string   "body",         null: false
+    t.integer  "user_id"
+    t.datetime "last_used_at"
+    t.string   "ip",           null: false
+    t.string   "user_agent",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "auth_tokens", ["user_id"], name: "index_auth_tokens_on_user_id"
 
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
@@ -59,5 +71,14 @@ ActiveRecord::Schema.define(version: 20160329184303) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
