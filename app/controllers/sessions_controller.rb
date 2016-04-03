@@ -5,14 +5,14 @@ class SessionsController < ApplicationController
     user = User.find_by(email: session_params[:email])
 
     if user && user.authenticate(session_params[:password])
-      render json: { user_email: user.email, auth_token: TokenManager.create_token(user, request) }, status: :ok
+      render json: { user_email: user.email, auth_token: TokenManager.create(user, request) }, status: :ok
     else
       render json: "", status: :unauthorized
     end
   end
 
   def destroy
-    TokenManager.expire_token(current_user, request) if current_user
+    TokenManager.expire(current_user, request) if current_user
     render json: "", status: :ok
   end
 

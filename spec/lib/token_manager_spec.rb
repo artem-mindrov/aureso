@@ -19,19 +19,19 @@ describe TokenManager, type: :model do
       expect(user.auth_tokens).to receive(:create!).with(last_used_at: Time.now,
                                                          ip: request.remote_ip,
                                                          user_agent: request.user_agent).and_return(auth_token)
-      described_class.create_token(user, request)
+      described_class.create(user, request)
     end
 
     it "returns the token" do
       allow(user.auth_tokens).to receive(:create!).and_return(auth_token)
-      expect(described_class.create_token(user, request)).to eq("token")
+      expect(described_class.create(user, request)).to eq("token")
     end
   end
 
   describe "purge_tokens" do
     it "deletes all the user's tokens" do
       expect(user.auth_tokens).to receive_message_chain(:order, :destroy_all)
-      described_class.purge_tokens(user)
+      described_class.purge(user)
     end
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe AuthTokenStrategy, type: :model do
 
       it "authenticates" do
         expect(User).to receive(:find_by).with(email: user.email).and_return(user)
-        expect(TokenManager).to receive_message_chain(:new, :find_token).with(user, token.body).and_return(token)
+        expect(TokenManager).to receive_message_chain(:new, :find).with(user, token.body).and_return(token)
         expect(subject).to receive(:success!).with(user)
         subject.authenticate!
       end
@@ -57,7 +57,7 @@ RSpec.describe AuthTokenStrategy, type: :model do
 
       it "fails" do
         expect(User).to receive(:find_by).with(email: user.email).and_return(user)
-        expect(TokenManager).to receive_message_chain(:new, :find_token).with(user, "invalid-token").and_return(nil)
+        expect(TokenManager).to receive_message_chain(:new, :find).with(user, "invalid-token").and_return(nil)
         expect(subject).to receive(:fail!)
         subject.authenticate!
       end

@@ -11,7 +11,7 @@ class AuthTokenStrategy < ::Warden::Strategies::Base
 
     return fail!(error) unless user
 
-    token = TokenManager.new.find_token(user, auth_token)
+    token = TokenManager.new.find(user, auth_token)
     return fail!(error) unless token
 
     update_token(token)

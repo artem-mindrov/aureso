@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :request do
-  before { allow(TokenManager).to receive(:create_token).and_return(auth_token.body) }
+  before { allow(TokenManager).to receive(:create).and_return(auth_token.body) }
 
   let!(:user) { create(:user, password: "valid-password") }
   let!(:auth_token) { create(:auth_token, user_id: user.id) }
