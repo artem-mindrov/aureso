@@ -1,9 +1,15 @@
 class ErrorsController < ApplicationController
   def routing_error
-    render json: { error: "Page not found" }, status: :not_found
+    respond("Page not found", :not_found)
   end
 
   def exception
-    render json: { error: "Internal server error" }, status: :internal_server_error
+    respond("Internal server error", :internal_server_error)
+  end
+
+  private
+
+  def respond(message, status)
+    render json: { error: message }, status: status
   end
 end

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/authenticated'
 
 # https://github.com/rails/jbuilder/issues/32#issuecomment-32216199
 RSpec.describe V1::ModelTypesController, type: :request do
@@ -6,6 +7,10 @@ RSpec.describe V1::ModelTypesController, type: :request do
     @model = create(:model)
     create_list(:model_type, 10, model_id: @model.id)
     ModelType.any_instance.stub(:total_price).and_return(200)
+  end
+
+  it_behaves_like "authenticated" do
+    let(:path) { "/models/#{create(:model).slug}/model_types" }
   end
 
   describe "GET #index" do
