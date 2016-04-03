@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  skip_before_action :authenticate!
+
   def routing_error
     respond("Page not found", :not_found)
   end

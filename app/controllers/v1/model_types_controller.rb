@@ -5,6 +5,12 @@ class V1::ModelTypesController < ApplicationController
   end
 
   def model_types_price
-    @model_type = Model.find(params[:model_id]).model_types.find(params[:model_type_id])
+    @model_type = Model.find(model_type_params[:model_id]).model_types.find(model_type_params[:model_type_id])
+  end
+
+  private
+
+  def model_type_params
+    params.permit(:model_id, :model_type_id)
   end
 end

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :sessions, only: [:create, :destroy]
+
   get "/500" => "errors#exception"
   match "*path", to: "errors#routing_error", via: :all
 
