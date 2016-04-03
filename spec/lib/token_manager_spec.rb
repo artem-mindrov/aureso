@@ -5,10 +5,6 @@ require 'timecop'
 class MockRequest
   def remote_ip; "127.0.0.1"; end
   def user_agent; "Chrome"; end
-
-  def headers
-    { "X-Auth-Token" => "xauthtoken" }
-  end
 end
 
 describe TokenManager, type: :model do
